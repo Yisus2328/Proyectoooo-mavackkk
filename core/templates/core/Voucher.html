@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher de Pago</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .voucher {
+            width: 300px;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+        .voucher h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .voucher-details {
+            margin-bottom: 10px;
+        }
+        .voucher-details span {
+            font-weight: bold;
+        }
+        #downloadButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        #downloadButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="voucher">
+        <h2>Voucher de Pago</h2>
+        <div class="voucher-details"><span>Nombre:</span> Cristiano Ronaldo</div>
+        <div class="voucher-details" id="fecha"></div>
+        <div class="voucher-details"><span>Monto:</span> $10</div>
+        <div class="voucher-details"><span>Concepto:</span> Pago de obras</div>
+    </div>
+    <button id="downloadButton">Descargar Voucher en PDF</button>
+
+    <script>
+        const { jsPDF } = window.jspdf;
+
+        document.getElementById('downloadButton').addEventListener('click', () => {
+            const doc = new jsPDF();
+
+            doc.setFontSize(22);
+            doc.text("Voucher de Pago", 105, 20, null, null, 'center');
+            doc.setFontSize(16);
+            doc.text("Nombre: Cristiano Ronaldo", 20, 40);
+
+            // Obtener fecha actual
+            let fechaActual = new Date();
+            let options = { year: 'numeric', month: 'long', day: 'numeric' };
+            let fechaTexto = fechaActual.toLocaleDateString('es-ES', options);
+            doc.text(`Fecha: ${fechaTexto}`, 20, 50);
+
+            doc.text("Monto: $10", 20, 60);
+            doc.text("Concepto: Pago de obras", 20, 70);
+
+            doc.save('voucher_pago.pdf');
+        });
+    </script>
+</body>
+</html>

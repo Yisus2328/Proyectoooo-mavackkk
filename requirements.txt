@@ -1,0 +1,22 @@
+django
+django-admin-interface
+django-crispy-forms
+crispy-bootstrap4
+pillow
+zeep
+psycopg2
+djangorestframework
+
+#pip install -r requeriments.txt
+#pip install psycopg2-binary
+#pip install django-admin-confirm
+#pip install django-axes 
+#pip install  django-simple-captcha
+#pip install django-recaptcha
+#pip install django-multi-captcha-admin
+#pip install djangorestframework
+
+#pip install django-recaptcha2
+#python -m pip install requests
+#pip install django-crispy-forms
+#pip install crispy-bootstrap4

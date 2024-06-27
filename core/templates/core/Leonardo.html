@@ -1,0 +1,33 @@
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>La mona lisa</title>
+        <link rel="stylesheet" href="{% static 'core/CSS/da_vinci.css' %}"> 
+    </head>
+    <h1 class="titulo-mona"> La Mona Lisa</h1>
+
+    <body>
+        <h1>La Mona Lisa - Leonardo Da Vinci</h1>
+        <p>Tiulo Original: La Gioconda</p>
+        <p>Museo: Museo del Louvre</p>
+        <p>Tecnica Usada: Sfumato </p>
+        <p></p>
+        <img src="{% static 'core/IMG/MonsaLisa.webp' %}"
+
+         alt="" srcset="" >
+
+            <p>La expectación, pero también las incógnitas, han acompañado a este cuadro único desde su creación. Hoy sabemos que hacia 1503 Leonardo comenzó el retrato de una dama florentina: Lisa Gherardini, esposa del mercader Francesco del Giocondo.</p>
+            <p>Leonardo mantuvo siempre la pintura entre sus posesiones. Cuando entró al servicio de Francisco I de Francia llevó con él el retrato, que fue adquirido por el monarca francés en 1518, pasando a formar parte de las colecciones reales francesas.</p>
+            <p>Como ingeniero, Leonardo concibió ideas muy adelantadas a su tiempo, inventando conceptualmente el paracaídas, el helicóptero, un vehículo blindado de combate, el uso de energía solar concentrada, una calculadora, una teoría rudimentaria de placas tectónicas y el doble casco.</p>
+            <p>Pero el mayor logro que tuvo este fue la <b>mona lisa</b></p>
+            <img src="{% static 'core/IMG/daVinci.jpg' %}" alt="" srcset="">
+
+            <p>Con una pintura en la que se ve el reflejo de una mujer con una expresion desconocida o la cual ha sido un gran misterio por años debido a la inquietud que demuestra o su "felicidad representada de otra manera. En 2020, Stéphane Distinguin, CEO de Fabernovel, estimó un costo de 50 millones de euros para la obra de Leonardo da Vinci. Otros analistas han valorado a la Mona Lisa en un precio de 700 millones de dólares." </p>
+            <button class="btn-mona" onclick="window.location.href='INDEX.html'">Volver al inicio</button>
+
+
+{% endblock %}     
+</body>
+</html>

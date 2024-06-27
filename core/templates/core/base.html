@@ -1,0 +1,189 @@
+<!-- Base html-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/CSS/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-x3HJGl8i+ndkNy5tEXkkAaZZlQfneSJ7++fr4aCU3SKe7JTxkVQEcVV5z9NWwaU6cfQyTX5YYlT9kC83e3RAcQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<!-- Barra de navegación -->
+<!--Barra de navegacion-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+      <!-- Logo y nombre de la marca -->
+      <a class="navbar-brand" href="#">
+          <img src="{% static 'core/IMG/Logo.png' %}" style="background:none" alt="Logo" height="92px" width="100px">
+      </a>
+
+      <!-- Botón hamburguesa para dispositivos móviles -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Contenido de la barra de navegación -->
+      <div class="collapse navbar-collapse contenido" id="navbarSupportedContent">
+          <!-- Elementos de navegación a la izquierda -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="Contacto.html">Contacto</a>
+              </li>
+          </ul>
+
+          <!-- Elementos del perfil de usuario a la izquierda -->
+          <div class="Profile_info">
+              {% if user.is_authenticated %}
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="cartLink">Mi Carrito</a>
+                    <div class="buy-card">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items_carrito %}
+                                <tr>
+                                    <td>{{ item.arte.nombre }}</td>
+                                    <td>${{ item.arte.precio }}</td>
+                                    <td>{{ item.cantidad }}</td>
+                                    <td>${{ item.subtotal }}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                                    <td>${{ total_carrito }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <form action="{% url 'vaciar_carrito' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Vaciar</button>
+                        </form>
+                        <button type="button" class="btn btn-success" onclick="redirectToPago()">Ir a Pago</button>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsuario" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuario
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownUsuario">
+                        <a class="dropdown-item" href="/detalle_producto/">Productos ingresados</a>
+                    </div>
+                </li>
+
+                
+                {% if user.is_staff or group.name == 'supervisor' %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStaff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Staff
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownStaff">
+                        <a class="dropdown-item" href="/solicitudes/">Solicitudes</a>
+                    </div>
+                </li>
+                {% endif %}
+              </ul>
+              <div class="profile_info_iner">
+                  <div class="mensaje">
+                      <p>Bienvenido</p>
+                      <h5>{{ user.username }}</h5>
+                  </div>
+                  <div class="profile_info_details">
+                      <form action="{% url 'logout' %}" method="POST">
+                          {% csrf_token %}
+                          <button type="submit">Cerrar Sesión</button>
+                      </form>
+                      <a href="{% url 'artesapi' %}">Listar API</a>
+                  </div>
+              </div>
+              {% else %}
+              <div class="profile_info_iner">
+                  <div class="mensaje">
+                      <p>Bienvenido</p>
+                      <h5>Invitado</h5>
+                  </div>
+                  <div class="profile_info_details">
+                      <a href="{% url 'login' %}">Login</a>
+                      <a href="{% url 'register' %}">Register</a>
+                  </div>
+              </div>
+              {% endif %}
+          </div>
+
+          <!-- Formulario de búsqueda a la derecha -->
+          <form class="buscador">
+              <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+      </div>
+  </div>
+</nav>
+
+<!-- Contenido de cada página -->
+{% block content %}
+{% endblock %}
+
+<!-- Footer -->
+<footer>
+    <div class="listas">
+        <div class="listas_de_Ayuda">
+            <h4>Ayuda</h4>
+            <ul>
+                <li><a href="" class="footerA">Centro de ayuda</a></li>
+                <li><a href="" class="footerA">Seguimiento de mi compra</a></li>
+                <li><a href="" class="footerA">Formulario de contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="Listas_de_nosotros">
+            <h4>Nosotros</h4>
+            <ul class="footerUL ">
+                <li><a href="" class="footerA">Quienes Somos</a></li>
+                <li><a href="" class="footerA">Políticas de privacidad</a></li>
+                <li><a href="" class="footerA">Términos y condiciones</a></li>
+            </ul>
+        </div>
+
+        <div class="listas_de_redes">
+            <h4>Redes Sociales</h4>
+            <ul class="footerUL">
+                <li><a href="" class="footerA">Instagram</a><img src="{% static 'core/IMG/instagram.png' %}" width="22px" height="22px"></li>
+                <li><a href="" class="footerA">Facebook</a><img src="{% static 'core/IMG/facebook.png' %}" width="18px" height="18px"></li>
+                <li><a href="" class="footerA">YouTube</a><img src="{% static 'core/IMG/youtube.png' %}" width="18px" height="18px"></li>
+                <li><a href="" class="footerA">Twitter</a><img src="{% static 'core/IMG/logotipos.png' %}" width="18px" height="18px"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2024 MavackArt. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function redirectToPago() {
+        // Cambiar la ubicación actual del navegador al URL de pago
+        window.location.href = "{% url 'pago' %}";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'core/CSS/solicitudes.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+    <div class="admin-panel">
+        <header>
+            <h1>Panel de Administración</h1>
+            <button type="button" class="Cerrar" onclick="window.location.href='index-no-log.html'">Cerrar Sesión</button>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">Gestión de Usuarios</a></li>
+                <li><a href="#">Gestión de Contenido</a></li>
+                <li><a href="#">Estadísticas y Análisis</a></li>
+                <li><a href="#">Configuraciones</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>Solicitudes Pendientes</h1>
+        <div class="table_section">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Tipo Arte</th>
+                        <th>Descripción</th>
+                        <th>Dimensiones</th>
+                        <th>Correo Propietario</th>
+                        <th>Imagen</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aux in lista %}
+                        {% if aux.estado == 'pendiente' %}
+                            <tr>
+                                <td>{{ aux.nombre }}</td>
+                                <td>{{ aux.autor }}</td>
+                                <td>{{ aux.tipo_arte }}</td>
+                                <td>{{ aux.descripcion }}</td>
+                                <td>{{ aux.dimensiones }}</td>
+                                <td>{{ aux.correo_propietario }}</td>
+                                <td>{{ aux.imagen }}</td>
+                                <td>
+                                    <a href="{% url 'aceptado' aux.id %}" class="btn btn-success">Aceptar</a>
+                                    <a href="{% url 'rechazado' aux.id %}" class="btn btn-danger">Rechazado</a>
+                                </td>
+                            </tr>
+                        {% endif%}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

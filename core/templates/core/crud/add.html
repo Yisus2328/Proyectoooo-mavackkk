@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/CSS/crud.css' %}">
+
+{% load crispy_forms_tags %}
+<div class="formulario">
+    <h2>Agregar Producto</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form | crispy}}
+        </div>
+        <div class="form-actions">
+            <input class="btn btn-success" type="submit" value="Agregar">
+            <input class="btn btn-danger" type="reset" value="Limpiar">
+        </div>
+    </form>
+</div>
+{% endblock %}

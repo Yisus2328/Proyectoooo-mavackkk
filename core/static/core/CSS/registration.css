@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #181818;
+    color: #fff;
+    line-height: 1.6;
+    font-family: 'Quicksand', sans-serif;
+    padding: 0 5%; /* Utilizar unidades relativas */
+}
+
+/* Titulo */
+.logo {
+    text-align: center;
+    font-size: 4vw; /* Utilizar unidades relativas */
+}
+
+/* Contenedor del formulario */
+.Caja_Formulario {
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+    width: 90%; /* Utilizar unidades relativas */
+    max-width: 600px; /* Establecer un máximo para evitar que el formulario se extienda demasiado */
+    margin: auto;
+}
+
+.Caja_Formulario > * {
+    padding: 4%; /* Utilizar unidades relativas */
+}
+
+.Formulario_Contacto {
+    background: #222222;
+}
+
+.Formulario_Contacto form {
+    display: block;
+}
+
+.Formulario_Contacto form p {
+    margin: 3% 0; /* Utilizar unidades relativas */
+}
+
+.Formulario_Contacto form .block {
+    text-align: center;
+}
+
+.Formulario_Contacto form input,
+.Formulario_Contacto form textarea {
+    width: 100%;
+    padding: 2%; /* Utilizar unidades relativas */
+    border: none;
+    background: none;
+    outline: 0;
+    color: #fff;
+    border-bottom: 1px solid #d63031;
+    margin-bottom: 3%; /* Utilizar unidades relativas */
+}
+
+.Formulario_Contacto form input[type="submit"] {
+    background: #B70E21;
+    border: 0;
+    text-transform: uppercase;
+    padding: 4%; /* Utilizar unidades relativas */
+    cursor: pointer;
+}
+
+.Formulario_Contacto form input[type="submit"]:hover,
+.Formulario_Contacto form input[type="submit"]:focus {
+    background: #d63031;
+    color: #fff;
+    transition: background-color 1s ease-out;
+    outline: 0;
+}
+
+
+.g-recaptcha {
+    margin: 20px; /* Ajusta según el espacio deseado */
+}
+
+@media (max-width: 768px) {
+    .Caja_Formulario {
+        width: 90%; /* Ajustar el ancho en dispositivos móviles */
+    }
+}

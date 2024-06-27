@@ -1,0 +1,28 @@
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>La Noche Estrellada - Vincent van Gogh</title>
+        <link rel="stylesheet" href="{% static 'core/CSS/da_vinci.css' %}">  <!-- Agrega la ruta correcta a tu hoja de estilos -->
+    </head>
+    <body>
+        <h1>La Noche Estrellada - Vincent van Gogh</h1>
+        <p>Tiulo Original: De Sterrennacht</p>
+        <p>Museo: MoMA, Nueva York (Estados Unidos)</p>
+        <p>Tecnica Usada: Oleo</p>
+        <p></p>
+        <img src="{% static 'core/IMG/VAN GO.gif' %}" alt="" srcset="">
+
+            <p>Van Gogh miraba por la ventana del sanatorio de Saint-Rémy. Ya no tenía el lóbulo de su oreja y se sentía cada vez más acosado por las alucinaciones.</p>
+            <p>Cuando miraba los cipreses del jardín, éstos parecían vibrar. Cuando miraba al cielo nocturno, las estrellas parecían estar vivas. Eso es lo que captó en este lienzo que es hoy uno de los más famosos de la historia del arte.</p>
+            <p>El artista pintaría a lo largo de su carrera tanto cipreses como estrellas, ambos de marcado carácter simbólico, pero esta obra es quizás la que mejor comunica su particular estilo.</p>
+            <p>Con sus pinceladas vigorosas, Van Gogh capta un paisaje exterior y uno interior. El cielo en espiral parece moverse de verdad en el lienzo. Las estrellas tienen su propio halo, que el pintor exagera para expresar más (y adelantándose unas décadas al expresionismo).</p>
+            <img src="{% static 'core/IMG/vanGogh.webp' %}" alt="" srcset="">
+
+            <p>Con una pintura en la que las estrellas y el cielo parecen moverse y en donde en la ciudad existe una quietud incomparable, esta obra maestra, insignia del impresionismo, actualmente se encuentra en manos del Museo de Arte Moderno en Nueva York (MoMa) y se dice que si quisieran venderla, su valor oscila entre los 500 y 1000 millones de dólares. </p>
+            <button class="btn-mona" onclick="window.location.href='INDEX.html'">Volver al inicio</button>
+
+{% endblock %}  
+</body>
+</html>

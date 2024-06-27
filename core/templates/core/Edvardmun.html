@@ -1,0 +1,28 @@
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>El grito - Edvard Munch</title>
+        <link rel="stylesheet" href="{% static 'core/CSS/da_vinci.css' %}"> 
+        <!-- Agrega la ruta correcta a tu hoja de estilos -->
+    </head>
+    <body>
+        <h1>El Grito - Edvard Munch</h1>
+        <p>Tiulo Original: Skrik</p>
+        <p>Museo: Museo Munch (Oslo)</p>
+        <p>Tecnica Usada: Óleo Pastel Temple</p>
+        <p></p>
+        <img src= "{% static 'core/IMG/Grito.webp' %}"  srcset="" >
+    
+
+            <p>Munch se inspiró en su propia vida atormentada, una tragedia sobre un padre severo, una madre muerta y unas hermanas enfermas, trastornos bipolares y depresión, alcohol y armas de fuego.</p>
+            <p>El cuadro fue expuesto por primera vez en 1893, formando parte de un conjunto de seis piezas titulado Amor. La idea de Munch era la de representar las distintas fases de un idilio, desde el enamoramiento inicial a una ruptura dramática. El grito representaba la última etapa, envuelta en angustia.</p>
+            <p>La versión original y más famosa, terminada en 1893, se encuentra en la Galería Nacional de Oslo, Noruega.</p>
+            <img src="{% static 'core/IMG/munchFoto.webp' %}" alt="" srcset="">
+            <p>La obra maestra del pintor expresionista noruego Edvard Munch, "El grito", fue subastada por casi US$120 millones.</p>
+            <button class="btn-mona" onclick="window.location.href='core/index.html'">Volver al inicio</button>
+
+{% endblock %}  
+</body>
+</html>

@@ -1,0 +1,140 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+        
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/CSS/Index.css' %}">
+
+
+    <!--Seccion de exposiciones-->
+    <section class="Exhibicion">
+      <div class="TituloExpo">
+        <div class="titulo-container">
+            <h2>Exposiciónes Actuales desde el API </h2>
+        </div>
+    </div>
+    
+      
+
+    <!-- HTML para el buscador con campo de entrada, botón de búsqueda y menú desplegable para filtros -->
+    <div class="BuscadorEx">
+      <div class="search-container">
+          <input class="filtro" type="search" placeholder="Buscar..." aria-label="Search">
+          <button type="button" class="btn btn-outline-primary">Buscar</button>
+      </div>
+      <div class="dropdown">
+
+            <!-- Aquí iría tu botón de filtro como un botón desplegable -->
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filtros
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <!-- Opciones de filtro aquí -->
+              <a class="dropdown-item" href="#">Pinturas</a>
+              <a class="dropdown-item" href="#">Esculturas</a>
+          </div>
+      </div>
+    </div>
+
+    
+
+    <div class="container">
+        <div class="row">
+            {% for aux in arte %}
+                {% if aux.estado == 'aceptado' %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                        {% if aux.imagen %}
+                        <img src="{{ aux.imagen }}" class="card-img-top" height="350">
+                        {% else %}
+                        <img src="{% static 'core/img/fondo_blanco.avif' %}" class="card-img-top" alt="" height="350"> 
+                        {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title">{{ aux.autor }} </h4>
+                            <h3 class="card-title">{{ aux.nombre }} </h3>
+                            <h6 class="card-title">{{ aux.tipo_arte.descripcion }} - {{ aux.dimensiones }}</h6>
+                            <p class="card-text">{{ aux.descripcion }}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+
+            {% endfor %}
+            <div>   
+            <h1>Valor del dólar: {{ precio }}</h1>
+            <div>
+            <h1>Usuarios que han ayudado a la pagina:</h1>
+            <div>
+
+
+            <div class="container">
+                <div class="row">
+            {% for aux in randomuser %}
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ aux.name.first }} {{ aux.name.last }}</h4>
+                        <h3 class="card-title">{{ aux.email }} </h3>
+                        <h6 class="card-title">{{ aux.login.username }}</h6>
+                        
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            <hr>
+            {% for aux in randomuser %}
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ aux.name.first }} {{ aux.name.last }}</h4>
+                        <h3 class="card-title">{{ aux.email }} </h3>
+                        <h6 class="card-title">{{ aux.login.username }}</h6>
+                        
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            <hr>
+            {% for aux in randomuser %}
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ aux.name.first }} {{ aux.name.last }}</h4>
+                        <h3 class="card-title">{{ aux.email }} </h3>
+                        <h6 class="card-title">{{ aux.login.username }}</h6>
+                        
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            
+            </div>
+        </div>
+            <hr>
+        </div>
+
+
+  </div>
+  
+
+
+
+
+  
+
+    </section>
+
+{% endblock %}
+
+
+
+    
+</body>
+</html>
+

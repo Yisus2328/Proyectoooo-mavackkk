@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/CSS/administracion.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<div class="table-container">
+    <div class="table_header">
+        <h2>Detalles de los productos</h2>
+        <div>
+            
+            
+            <a href="add/"><button class="add_new" type="button">Agregar Producto</button></a>
+        </div>
+    </div>
+
+    <div class="table_section">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>Tipo Arte</th>
+                    <th>Descripcion</th>
+                    <th>Dimensiones</th>
+                    <th>Correo Propietario</th>
+                    <th>Imagen</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aux in lista %}
+                    
+                <tr>
+                    <td>{{ aux.id }}</td>
+                    <td>{{ aux.nombre }}</td>
+                    <td>{{ aux.autor }}</td>
+                    <td>{{ aux.tipo_arte }}</td>
+                    <td>{{ aux.descripcion }}</td>
+                    <td>{{ aux.dimensiones }}</td>
+                    <td>{{ aux.correo_propietario }}</td>
+                    <td>{{ aux.imagen }}</td>
+                    <td>{{ aux.estado }}</td>
+                    <td>
+
+                        {% if aux.estado == 'rechazado' %}
+                            <a href="{% url 'update' aux.id %}">
+                                <button type="button"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </a>
+                
+                            <a  onclick="confirmarDelete({{ aux.id }})">
+                                <button type="button" class="delete-button"><i class="fa-solid fa-trash"></i></button>
+                            </a>
+                        {% endif%}
+                    </td>
+                    
+                </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
