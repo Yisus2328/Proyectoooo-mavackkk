@@ -8,7 +8,6 @@ psycopg2-binary
 djangorestframework
 cloudinary
 whitenoise
-
 #pip install -r requeriments.txt
 #pip install psycopg2-binary
 #pip install django-admin-confirm
@@ -17,17 +16,8 @@ whitenoise
 #pip install django-recaptcha
 #pip install django-multi-captcha-admin
 #pip install djangorestframework
-
 #pip install django-recaptcha2
 #python -m pip install requests
 #pip install django-crispy-forms
 #pip install crispy-bootstrap4
-
 #Contraseña de paypal
-"""
-Email
-sb-qesvb31270108@business.example.com
-
-Password
-0|+VS?kY
-"""
