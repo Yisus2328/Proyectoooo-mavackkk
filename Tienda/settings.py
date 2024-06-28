@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from datetime import timedelta
 import os
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +30,7 @@ SECRET_KEY = 'django-insecure-z1lpmr!%6!zmsnkktle4z^#rv2o68=@fl-+zkhcjb01=&^tj*=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1']
 
 
 # Application definition
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
     'axes',
     'captcha',
     'django_recaptcha',
+    'cloudinary',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -60,6 +64,7 @@ MULTI_CAPTCHA_ADMIN = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -108,7 +113,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres.zigutedzaaznnpfdxefm',
         'PASSWORD': '#123asdsa#asd',
-        'PORT': '5432'
+        'PORT': '6543'
     }
 }
 
@@ -148,6 +153,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#python manage.py collectstatic --upload-unhashed-files
+
+
+#CONFIG CLOUDINARY
+cloudinary.config (
+    cloud_name = 'dgszfohcu',
+    api_key = '526215546292375',
+    api_secret = 'gXulzBFSxvezH2oGkgQg6ziq3sk'
+)
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

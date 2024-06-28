@@ -1,3 +1,4 @@
+import json
 from pyexpat.errors import messages
 from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -11,16 +12,44 @@ from rest_framework.renderers import JSONRenderer
 import requests
 from django.core.paginator import Paginator
 
+@login_required
+def registrar_compra(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        carrito = request.session.get('carrito', {})
+        
+        if not carrito:
+            return JsonResponse({'error': 'Carrito vacío.'}, status=400)
+        
+        for arte_id, item in carrito.items():
+            try:
+                producto = Arte.objects.get(id=int(arte_id))
+                Compra.objects.create(
+                    usuario=request.user,
+                    producto=producto,
+                    cantidad=item['cantidad'],
+                    precio_total=item['cantidad'] * producto.precio
+                )
+            except Arte.DoesNotExist:
+                pass
+        
+        request.session['carrito'] = {}
+        return JsonResponse({'success': 'Compra registrada con éxito.'})
+    
+    return JsonResponse({'error': 'Método no permitido.'}, status=405)
 
-
-
-
+@login_required
+def historia_compras(request):
+    compras = Compra.objects.filter(usuario=request.user).order_by('-fecha_compra')
+    return render(request, 'core/historial.html', {'compras': compras})
 
 def voucher(request):
-    return render(request, 'core/voucher.html') 
+    return render(request, 'core/Voucher.html') 
 
 
 #METODO PARA LISTAR DESDE EL API
+
+
 def artesapi(request):
     response = requests.get('http://127.0.0.1:8000/api/artes/')
     arte = response.json()
@@ -42,38 +71,15 @@ def artesapi(request):
     page_obj = paginator.get_page(page_number)
 
     aux = {
-        'lista' : arte,
+        'arte' :arte,
         'page_obj' : page_obj,
         'precio' :precio,
         'randomuser' : randomuser,
     }
 
-    return render(request, 'core/crudapi/index.html', aux)
-
-
-def artesapi(request):
-    response = requests.get('http://127.0.0.1:8000/api/artes/')
-    arte = response.json
-
-    response = requests.get('https://www.mindicador.cl/api/dolar/19-06-2024/')
-    data = response.json()
-
-    response2 = requests.get('https://randomuser.me/api/')
-    randomuser = response2.json()['results']
-    
-    
-    if 'serie' in data and len(data['serie']) > 0:
-        precio = data['serie'][0]['valor']
-    else:
-        precio = None
-
-    aux = {
-        'arte' :arte,
-        'precio' :precio,
-        'randomuser' : randomuser,
-    }
 
     return render(request, 'core/crudapi/index.html', aux)
+
 
 
 
@@ -200,27 +206,17 @@ def visualizar(request):
 
 
 def agregar_al_carrito(request, arte_id):
-    # Obtener el arte con el arte_id proporcionado o devolver un error 404 si no existe
     arte = get_object_or_404(Arte, id=arte_id)
-    
-    # Obtener la cantidad del formulario o establecerla en 1 por defecto
     cantidad = int(request.POST.get('cantidad', 1))
-
-    # Obtener el carrito actual de la sesión de Django
     carrito = request.session.get('carrito', {})
 
-    # Convertir arte_id a string para usarlo como clave en el diccionario
     arte_id_str = str(arte_id)
 
-    # Verificar si el arte_id ya está en el carrito
     if arte_id_str in carrito:
-        # Sumar la cantidad del formulario a la cantidad existente en el carrito
         carrito[arte_id_str]['cantidad'] += cantidad
     else:
-        # Agregar un nuevo elemento al carrito con la cantidad inicial del formulario
-        carrito[arte_id_str] = {'cantidad': cantidad}
+        carrito[arte_id_str] = {'cantidad': cantidad, 'nombre': arte.nombre, 'precio': float(arte.precio)}
 
-    # Actualizar la sesión de carrito con el nuevo valor
     request.session['carrito'] = carrito
 
     return redirect('index')
@@ -230,6 +226,8 @@ def vaciar_carrito(request):
         # Vaciar el carrito de la sesión
         request.session['carrito'] = {}
     return redirect('index')  # Redirige a la página principal o la página que desees
+
+
 
 #CRUD
 @login_required

@@ -28,8 +28,29 @@
                 onApprove: function(data, actions) {
                     return actions.order.capture().then(function(details) {
                         alert('Transacción completada por ' + details.payer.name.given_name);
-                        // Redirigir al usuario después de la transacción exitosa
-                        window.location.href = "{% url 'voucher' %}";
+                        
+                        // Registra la compra a través de un endpoint en Django
+                        fetch("{% url 'registrar_compra' %}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': '{{ csrf_token }}' // Incluye el CSRF token
+                            },
+                            body: JSON.stringify({
+                                paypal_order_id: data.orderID,
+                                paypal_payer_id: data.payerID
+                            })
+                        }).then(response => {
+                            if (response.ok) {
+                                // Redirigir al usuario después de la transacción exitosa
+                                window.location.href = "{% url 'voucher' %}";
+                            } else {
+                                alert('Hubo un problema registrando la compra.');
+                            }
+                        }).catch(error => {
+                            console.error('Error registrando la compra:', error);
+                            alert('Hubo un problema registrando la compra.');
+                        });
                     });
                 },
                 onCancel: function (data) {

@@ -15,6 +15,9 @@ urlpatterns = [
     path('agregar_al_carrito/<int:arte_id>/', agregar_al_carrito, name='agregar_al_carrito'),
     path('vaciar_carrito/', vaciar_carrito, name='vaciar_carrito'),
 
+    path('registrar_compra/', registrar_compra, name='registrar_compra'),
+    path('historia_compras/', historia_compras, name='historia_compras'),
+
     path('voucher/', voucher, name="voucher"),
     path('', visualizar, name="index"),
     path('detalle_producto/', listados, name="producto"),

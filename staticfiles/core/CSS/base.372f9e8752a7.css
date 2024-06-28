@@ -1,0 +1,219 @@
+/* Estilos de navegación */
+@media (max-width: 768px) {
+    .navbar {
+        height: fit-content;
+    }
+    .navbar .d-flex {
+        justify-content: center; /* Centrar elementos en pantallas más pequeñas */
+    }
+    .form-control {
+        width: 100%; /* Asegurar que los controles de formulario ocupen todo el ancho disponible */
+    }
+    .acceso {
+        margin-left: 0; /* Alinear el botón de acceso al inicio de la fila en pantallas más pequeñas */
+    }
+}
+
+/* Ocultar los elementos del carrito por defecto */
+.buy-card {
+    display: none;
+}
+
+/* Mostrar los elementos del carrito cuando se pasa el cursor sobre el enlace "Mi Carrito" */
+.nav-item:hover .buy-card {
+    display: block;
+    position: absolute; /* Para posicionar el cuadro */
+    background: #fff;   /* Fondo blanco o el que prefieras */
+    border: 1px solid #ddd; /* Borde para visualizar claramente */
+    padding: 10px;     /* Espaciado interno */
+    z-index: 1;        /* Asegura que esté por encima de otros elementos */
+    width: 400px;      /* Ancho del cuadro del formulario */
+    height: auto;     /* Alto del cuadro del formulario */
+}
+
+/* Estilo de grid para el carrito */
+/* Estilo para el carrito */
+.nav-card {
+    display: flex;
+    flex-wrap: wrap; /* Asegura que los elementos se envuelvan a la siguiente línea */
+    justify-content: center; /* Centra los elementos */
+}
+
+.cart-item {
+    flex: 0 0 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    padding: 5px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.buy-card button {
+    display: block;
+    margin: 5px auto; /* Centrar los botones */
+    width: 80%;
+}
+
+/* Ajuste para pantallas más pequeñas */
+@media (max-width: 600px) {
+    .nav-item:hover .buy-card {
+        width: 100%; /* Ocupa todo el ancho de la pantalla en móviles */
+    }
+}
+
+/* Estilos para el buscador */
+.buscador {
+    display: flex; /* Hace que los elementos dentro del formulario sean flexibles */
+    justify-content: flex-end; /* Alinea los elementos del buscador a la derecha */
+    margin-left: auto; /* Mueve el buscador a la derecha */
+}
+
+.buscador input {
+    margin: 10px; /* Añade un pequeño espacio entre */
+}
+
+.buscador button {
+    flex-shrink: 0; /* Evita que el botón se reduzca para ajustarse al contenedor */
+    margin: 10px;
+    width: 80px;
+    height: 40px;
+}
+
+.nav-item {
+    margin-right: 20;
+}
+
+/* Estilos de footer */
+.listas {
+    background-color: rgb(251, 113, 0);
+    display: flex;
+    padding: 50px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.listas_de_Ayuda, .Listas_de_nosotros, .listas_de_redes {
+    flex: 1 1 300px;
+    margin: 10px;
+    color: #ffffff;
+    text-align: left;
+    padding: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footerA:hover {
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .listas_de_Ayuda, .Listas_de_nosotros, .listas_de_redes {
+        flex-basis: 100%; 
+        margin: 10px 0; 
+    }
+}
+
+.copyright {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background-color: rgb(24, 23, 23);
+    padding: 10px;
+}
+
+/* Estilos de navegación con sesión iniciada */
+.Profile_info {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+}
+
+.profile_info_iner {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    margin-right: 10px; /* Añadir margen a la derecha para espaciar el contenedor del usuario */
+}
+
+.profile_info_details a {
+    color: rgb(196, 196, 196); /* Set text color to white */
+    text-decoration: none; /* Remove default underline */
+}
+
+.profile_info_details a:hover {
+    color: #ffffff; /* Change text color on hover to a lighter shade */
+}
+
+.profile_info_iner .mensaje p,
+.profile_info_iner .mensaje h5 {
+    margin: 0 10px 0 0; /* Añade espacio entre el párrafo y el encabezado */
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+.profile_info_details {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+}
+
+.profile_info_details a, 
+.profile_info_details form {
+    margin-left: 10px; /* Añade espacio entre los enlaces/formularios */
+}
+
+.profile_info_details button {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    margin: 10px;
+    /* Añade espacio entre el botón y otros elementos */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.mensaje {
+    color: rgb(179, 176, 176);
+    font-size: 18px;
+    padding: 10px;
+}
+
+/* Estilos para la navegación de páginas */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 20px 0;
+    list-style: none;
+    background-color: transparent;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-item .page-link {
+    color: white;
+    background-color: #343a40; /* Un gris oscuro para mejor contraste */
+    border: 1px solid #ffffff; /* Bordes blancos para visibilidad */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff; /* Azul para el elemento activo */
+    border-color: #007bff;
+    color: white;
+}
+
+.page-link:hover {
+    background-color: #495057; /* Color de fondo al pasar el ratón */
+    color: white;
+    text-decoration: none;
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}

@@ -1,0 +1,50 @@
+body {
+    background-color: rgba(0, 0, 0, 0.778);
+}
+
+
+
+/* Estilos de sección de exposiciones */
+.Exhibicion {
+    color: white;
+    background-color: rgb(27, 26, 26);
+}
+
+.BuscadorEx {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.filtro {
+    border-radius: 10px;
+    width: 300px;
+    height: 35px;
+}
+
+.btn{
+    margin: 5px;
+}
+
+.TituloExpo .titulo-container {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.container .card {
+    background-color: black;
+    border: 8px solid white;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    min-width: 200px;
+    min-height: 300px;
+    margin: 20px;
+    
+}
+
+
+

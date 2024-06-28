@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class TipoArte(models.Model):
@@ -15,7 +17,7 @@ class Arte(models.Model):
     fecha_ingreso = models.DateTimeField(auto_now_add=True)
     dimensiones = models.CharField(max_length=60)
     correo_propietario = models.CharField(max_length=60)
-    imagen = models.ImageField(upload_to="arte", blank=True, null=False)
+    imagen = CloudinaryField('imagen')
     precio = models.PositiveIntegerField()
     validacion = False
     opciones = (
@@ -35,3 +37,12 @@ class Arte(models.Model):
 
     
 
+class Compra(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Arte, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    precio_total = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha_compra = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Compra de {self.usuario.username} - {self.producto.nombre} - {self.cantidad} - {self.precio_total}"
