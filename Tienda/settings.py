@@ -109,9 +109,9 @@ WSGI_APPLICATION = 'Tienda.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'aws-0-sa-east-1.pooler.supabase.com',
+        'HOST': 'aws-0-us-east-1.pooler.supabase.com',
         'NAME': 'postgres',
-        'USER': 'postgres.zigutedzaaznnpfdxefm',
+        'USER': 'postgres.byfqmcwmmdxsdwfteyua',
         'PASSWORD': '#123asdsa#asd',
         'PORT': '6543'
     }
